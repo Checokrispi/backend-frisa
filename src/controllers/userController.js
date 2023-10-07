@@ -97,6 +97,23 @@ async function userLogin(req, res) {
     }
 }
 
+//update user
+async function updateUser(req, res){
+  try{
+    const {
+      token,
+      state,
+      city,
+      phoneNumber,
+      password,
+      confrimPassword
+    } = req.body;
+  } catch(error) {
+    console.error('Error Update User', error.message)
+    res.status(500).json({message: "Error Update User"})
+  }
+}
+
 module.exports = {
     getAllUsers,
     userRegister,

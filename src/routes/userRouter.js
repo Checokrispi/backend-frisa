@@ -13,6 +13,9 @@ router.post('/register', userController.userRegister)
 //Login
 router.put('/login', userController.userLogin)
 
+//Update User
+router.put('/update', userController.updateUser)
+
 
 
 module.exports = router

@@ -71,7 +71,26 @@ async function oscRegister(req, res) {
     }
   }
 
+//promedio osc
+async function oscPromedio(req, res){
+  try{
+    const oscId = req.params.id;
+    const result = await Osc.findOne({_id: oscId});
+    const oscAvg = result.avg;
+
+    return res.status(200).json({
+      data: {
+        oscAvg
+      }
+    });
+  } catch(error){
+    console.log('Error showing promedio de osc: ', error.message);
+    res.status(500).json({ message: "Error showing promedio de osc"});
+  } 
+}
+
   module.exports = {
     getAllOsc,
-    oscRegister
+    oscRegister,
+    oscPromedio
   }

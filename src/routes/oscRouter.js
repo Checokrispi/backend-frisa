@@ -9,5 +9,7 @@ router.get('/', oscController.getAllOsc);
 //register OSC
 router.post('/register', oscController.oscRegister);
 
+//promedio osc
+router.get('/promedio/:id', oscController.oscPromedio);
 
 module.exports = router

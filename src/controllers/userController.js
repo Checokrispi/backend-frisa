@@ -44,12 +44,6 @@ async function userRegister(req, res) {
         return res.status(400).json({ message: "El teléfono ya se encuentra registrado" });
       }
 
-      if (password !== confirmPassword){
-        return res.status(400).json({
-          message: "Password and password confirmation doesn't match."
-        });
-      }
-      
       let hashed_password = bcrypt.hashSync(password, 10);
   
       const newUser = new User({
@@ -99,23 +93,30 @@ async function userLogin(req, res) {
 
 //update user
 async function updateUser(req, res){
-  try{
-    const {
-      token,
-      state,
-      city,
-      phoneNumber,
-      password,
-      confrimPassword
-    } = req.body;
-  } catch(error) {
-    console.error('Error Update User', error.message)
-    res.status(500).json({message: "Error Update User"})
-  }
-}
+    try{
+      const {
+        token,
+        state,
+        city,
+        phoneNumber,
+        password,
+        confirmPassword
+      } = req.body;
+      
+      const userId = req.params.id;
+      await User.findOneAndUpdate({_id: userId}, req.body, {new:true});
+
+      res.status(201).json({ message: "Update user exitoso"});
+  
+    } catch(error) {
+      console.error('Error Update User', error.message)
+      res.status(500).json({message: "Error Update User"})
+    }
+  } 
 
 module.exports = {
     getAllUsers,
     userRegister,
-    userLogin
+    userLogin,
+    updateUser
 }

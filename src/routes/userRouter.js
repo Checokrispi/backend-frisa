@@ -14,7 +14,7 @@ router.post('/register', userController.userRegister)
 router.put('/login', userController.userLogin)
 
 //Update User
-router.put('/update', userController.updateUser)
+router.patch('/update/:id', userController.updateUser)
 
 
 

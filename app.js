@@ -9,6 +9,8 @@ const userRoutes = require("./src/routes/userRouter");
 const oscRoutes = require("./src/routes/oscRouter");
 require("dotenv").config();
 
+const Saludo = 'Hola'
+
 //Declaracion de variables para la coneccion a base de datos en mongo
 const app = express();
 const PORT = process.env.PORT || 3000; //El puerto al que se conectara la aplicacion es al puerto 3000
